@@ -3,3 +3,4 @@ test/test_library
 test/tutu1.h
 *.o
 *.a
+*.so

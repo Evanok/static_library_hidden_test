@@ -7,7 +7,8 @@ LDFLAGS= -L. -ltutu
 all: prep $(BINARY)
 
 prep:
-	cp ../build/libtutu.a .
+	-cp -f ../build/libtutu.a .
+	-cp -f ../build/libtutu.so .
 	cp ../inc/tutu1.h .
 
 $(BINARY): $(OBJECT_FILE)

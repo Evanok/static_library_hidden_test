@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(static_hiddem_library_test)
+project(shared_hiddem_library_test)
 
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 
@@ -31,19 +31,14 @@ set(LIBRARY_SOURCE
       ${CMAKE_CURRENT_SOURCE_DIR}/src/tutu2.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/tutu3.c)
 
-add_library(static_tutu_library STATIC ${LIBRARY_SOURCE})
-target_compile_options(static_tutu_library PRIVATE "-Wl,--exclude-libs,ALL" "-Wl,-Bsymbolic" "-fvisibility=hidden")
-target_link_options(static_tutu_library PRIVATE "-Wl,--exclude-libs,ALL" "-Wl,-Bsymbolic" "-fvisibility=hidden")
-target_include_directories(static_tutu_library PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/inc")
-set_target_properties(static_tutu_library PROPERTIES OUTPUT_NAME tutu)
+add_library(shared_tutu_library SHARED ${LIBRARY_SOURCE})
+target_compile_options(shared_tutu_library PRIVATE "-Wl,--exclude-libs,ALL" "-Wl,-Bsymbolic" "-fvisibility=hidden")
+target_link_options(shared_tutu_library PRIVATE "-Wl,--exclude-libs,ALL" "-Wl,-Bsymbolic" "-fvisibility=hidden")
+target_include_directories(shared_tutu_library PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/inc")
+set_target_properties(shared_tutu_library PROPERTIES OUTPUT_NAME tutu)
  
 message(STATUS "Final CFLAGS are ${CMAKE_C_FLAGS}")
 message(STATUS "Final CXXFLAGS are ${CMAKE_CXX_FLAGS}")
 message(STATUS "Final LDFLAGS are ${CMAKE_EXE_LINKER_FLAGS}")
-
-add_custom_command(TARGET static_tutu_library POST_BUILD
-COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/hide_symbol.sh $<TARGET_FILE:static_tutu_library>
-COMMENT "Invoke hide symbol script"
-WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 unset(DEBUG CACHE)
