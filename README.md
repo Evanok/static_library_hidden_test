@@ -25,7 +25,7 @@ private_sklock2.o:
 0000000000000000 T normal_tutu3_function
 ```   
 
-### Test to validate instruction
+### Test to validate library integration
 
 ```
 cd test && make
