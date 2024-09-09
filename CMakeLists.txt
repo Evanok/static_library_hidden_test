@@ -1,6 +1,7 @@
+cmake_minimum_required(VERSION 3.22)
 project(static_hiddem_library_test)
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
 
 option(DEBUG "Enable DEBUG" OFF)
 
