@@ -3,7 +3,7 @@
 #include "common.h"
 #include "tutu1.h"
 
-extern DLL_PUBLIC void this_is_the_only_public_function_tutu1 (int input)
+void __attribute__ ((visibility ("default"))) this_is_the_only_public_function_tutu1 (int input)
 {	
 	int new_value = input + normal_tutu3_function();
 	printf ("value is %d\n", new_value);

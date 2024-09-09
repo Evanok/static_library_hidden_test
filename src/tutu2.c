@@ -7,7 +7,7 @@ static void unused_static_tutu2_function (float value)
 	printf ("super static useless unused function: %f\n", new_value * value);
 }
 
-void __attribute__((visibility("hidden"))) unused_tutu2_function (float value)
+void unused_tutu2_function (float value)
 {
 	float new_value = 42.32;
 
