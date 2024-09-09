@@ -1,4 +1,4 @@
-### Compilation and test instruction
+### Compilation instruction
 
 ```
 arthur * master] pwd
@@ -8,7 +8,7 @@ rm -rf build/ && cmake -DDEBUG=OFF -B build -S . && cmake --build build && nm bu
 
 Current result:
 
-````
+```
 private_sklock0.o:
 0000000000000000 r .LC0
                  U normal_tutu3_function
@@ -24,3 +24,10 @@ private_sklock1.o:
 private_sklock2.o:
 0000000000000000 T normal_tutu3_function
 ```   
+
+### Test to validate instruction
+
+```
+cd test && make
+./test_library
+```    

@@ -4,11 +4,11 @@ HEADERS +=  -I.
 OBJECT_FILE = test.o
 LDFLAGS= -L. -ltutu
 
+all: prep $(BINARY)
+
 prep:
 	cp ../build/libtutu.a .
 	cp ../inc/tutu1.h .
-
-all: prep $(BINARY)
 
 $(BINARY): $(OBJECT_FILE)
 	$(CC) -o $@ $^ $(LDFLAGS)
