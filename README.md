@@ -3,26 +3,24 @@
 ```
 arthur * master] pwd
 /home/arthur/work/repository/static_library_obfucation_test
-rm -rf build/ && cmake -DDEBUG=OFF -B build -S . && cmake --build build && nm build/libtutu.a
+rm -rf build/ && cmake -DDEBUG=OFF -B build -S . && cmake --build build && nm build/libtutu.so
 ```   
 
 Current result:
 
 ```
-private_sklock0.o:
-0000000000000000 r .LC0
-                 U normal_tutu3_function
-                 U __printf_chk
-0000000000000000 T this_is_the_only_public_function_tutu1
+[arthur * shared_library] objdump -T build/libtutu.so 
 
-private_sklock1.o:
-0000000000000000 r .LC0
-0000000000000000 r .LC1
-                 U __printf_chk
-0000000000000000 T unused_tutu2_function
+build/libtutu.so:     file format elf64-x86-64
 
-private_sklock2.o:
-0000000000000000 T normal_tutu3_function
+DYNAMIC SYMBOL TABLE:
+0000000000000000  w   D  *UND*  0000000000000000  Base        _ITM_deregisterTMCloneTable
+0000000000000000  w   D  *UND*  0000000000000000  Base        __gmon_start__
+0000000000000000      DF *UND*  0000000000000000 (GLIBC_2.3.4) __printf_chk
+0000000000000000  w   D  *UND*  0000000000000000  Base        _ITM_registerTMCloneTable
+0000000000000000  w   DF *UND*  0000000000000000 (GLIBC_2.2.5) __cxa_finalize
+0000000000001120 g    DF .text  0000000000000023  Base        this_is_the_only_public_function_tutu1
+
 ```   
 
 ### Test to validate library integration
